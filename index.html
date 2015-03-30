@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html ng-app="tag-board">
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="icons/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href="css/main.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+  <script type="application/javascript" src="controller/Angular-controller.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    var add_tag=document.getElementById("button2");
+    var user_logout=document.getElementById("user_logout");
+// function redirect()
+// {
+//   var username="";
+//   var password="";
+//  // if ()
+//  //   window.location="index.html";
+// }
+function redirect1()
+{
+  window.location="login.html";
+}
+var modalWrapper = document.getElementById("modal_wrapper");
+var modalWindow = document.getElementById("modal_window");
+
+function show()
+{
+  document.getElementById("modal_window").style.display="block";
+  document.getElementById("main-change").style.opacity=0.1;
+}
+
+function exit()
+{
+  document.getElementById("modal_window").style.display="none";
+  document.getElementById("main-change").style.opacity=1;
+}
+
+function setting_redirect()
+{
+  document.getElementById("modal_window1").style.display="block";
+  document.getElementById("main-change").style.opacity=0.1;
+}
+
+function exit_settings()
+{
+  document.getElementById("modal_window1").style.display="none";
+  document.getElementById("main-change").style.opacity=1;
+}
+
+//   setInterval(function()
+// {
+//   tile1 = document.querySelectorAll('a1:nth-child(1)');
+//   test(tile1);
+// },100
+
+// );
+
+function test(arr1) {
+for(var i=0;i < arr1.length;i++) {
+ arr1[i].innerHTML = Math.floor(Math.random()*1000);
+
+}
+}
+
+function timer(number)
+{
+  for (var i=number;i<8000;)
+  {
+
+         if(i=1000)
+        {
+          i = i+1000;
+           i++;
+          return i;
+        }
+
+  }
+}
+  setInterval(function()
+
+{
+  tile2 = document.querySelectorAll('a1');
+   test(tile2);
+ },timer(1000)
+
+);
+function test(arr2) {
+for(var i=0;i < arr2.length;i++) {
+ arr2[i].innerHTML = Math.floor(Math.random()*100);
+}
+}
+
+
+  setInterval(function()
+{
+  tile1 = document.querySelectorAll('span1');
+   test(tile1);
+ },1000
+
+);
+
+function test(arr1) {
+for(var i=0;i < arr1.length;i++) {
+ arr1[i].innerHTML = Math.floor(Math.random()*10);
+}
+}
+
+
+// Test content.
+  // $('.inline-block').text('44');
+
+
+
+  function search_text()
+  {
+    var forms = form2.elements["search"].value;
+    if(forms == "not found")
+    {
+      document.getElementById("not-found").style.display="block";
+      document.getElementById("found").style.display="none";
+    }
+      if (forms==" "){
+      document.getElementById("not-found").style.display="none";
+      document.getElementById("found").style.display="none";
+    }
+    else if (forms = "found"){
+      document.getElementById("found").style.display="block";
+      document.getElementById("not-found").style.display="none";
+    }
+
+    // var founds = document.innerHTML("detailed in tag_list | filter:searchText:strict");
+
+    //    count = 0;
+    //    for (var i=0;i<founds;i++)
+    //    {
+    //     count++;
+    //    }
+    //    return p1.innerHTML(count);
+
+  }
+
+  function count()
+  {
+
+   var p2 = document.getElementById('p2');
+   var  p3 = [p2.innerHTML];
+   return p3.length;
+
+   }
+</script>
+</head>
+<body ng-controller="tagboardCtrl">
+  <header class="header clearfix">
+    <section class="container container-header">
+      <div class="header-half header-left">
+        <div class="logo inline-block">
+          <a class="logo-link" href="#"><span class="icon-logo">T</span></a>
+        </div>
+        <div class="tag-board header-inline-block">
+          <a class="small head" href="#">My Tag Board</a>
+        </div>
+        <span id="button2" onClick="show();"class=" header-inline-block header-button button-add">Add Tag</span>
+      </div>
+      <div class="header-half header-right">
+        <a class="user-name ">Sid Shankar</a>
+        <div class="user-logout header-inline-block">
+          <a id="user_logout" onClick="redirect1();" class="user-name">| Logout</a>
+        </div>
+      </div>
+    </section>
+  </header>
+  <section  id="main-change" class="main clearfix">
+    <div class="container">
+    <div ng-repeat="details in tag_list" class="tile">
+      <p class="tile-header">{{details.tag_id}}</p>
+      <div class="tile-details">
+        <div class="text-value">
+          <i class=" asc-sort fa {{details.classes}}"></i>
+          <a1 class="inline-block b-color-{{details.class}}">{{details.tag_name}}</a1>
+        </div>
+        <span class="small-value">{{details.Unit}}</span>
+      </div>
+      <div class="tile-footer"><span1 class=" time-line color-grey">{{details.time}}
+
+      </span1>
+        <span class=" color-grey image-setting"><i class="fa fa-cog" onClick="setting_redirect();">
+        </i>
+        </span>
+      </div>
+    </div>
+</div>
+</section>
+<!-- -->
+  <div id="modal_window">
+        <div class="search-header">
+          <!-- <input id="button1" type="button"/> -->
+          <a class="button close" onClick="exit();"><i class="fa fa-times "></i></a>
+          <h1 class ="header-title">Search Tags</h1>
+        </div>
+        <form name="form2">
+
+            <input ng-model="searchText.$" type="text" id="search" class="one search-button" placeholder="Search Tags"/>
+            <input type="button" class ="go-button" onClick="search_text();" value="Go"/>
+            <p id="not-found" class="not-found-result result-color">Not Found</p>
+
+        </form>
+
+        <div id="found">
+
+          <p id="p1"class="found-result result-color" ng-repeat="detailed in tag_list | filter:searchText:strict " onClick="count();">
+               Found values -
+              {{detailed.tag_id}}
+          </p>
+        <table>
+          <thead>
+            <tr>
+              <th class="name">Name</th>
+              <th class="desc">Description</th>
+              <th class="add">Add</th>
+            </tr>
+          </thead>
+          <tr ng-repeat="details in tag_list | filter:searchText:strict">
+            <td>{{details.tag_id}}</td>
+            <td>{{details.Unit}}</td>
+            <td><a href="#" class="button circular-model"><i id="one" class="fa fa-plus" onClick="add_one();"></i></a>
+            </td>
+          </tr>
+        </table>
+        </div>
+
+
+</div>
+</div>
+<!-- -->
+
+  <div id="modal_window1">
+   <a class="button close" onClick="exit_settings();"><i class="fa fa-times "></i></a>
+      <section class ="common-header">
+        <h1 class="header-title">Settings</h1>
+      </section>
+      <form class="login-content" action="index.html">
+        <div class="setting-input">
+          <h1 class="header-title">Upper Range</h1><input type="number" name="Enter Upper Range" placeholder="Enter Upper Range" class="one range"/>
+          <h1 class="header-title">Lower Range</h1><input type="number" name="Enter LowerRange" placeholder="Enter LowerRange" class="one  range"/>
+        </div>
+        <div class="position-setting">
+          <a href="#" id="button2" class="button submit-button" onSubmit="redirect()" >Ok</a>
+          <a href="#" id="button2" class="button submit-button" onClick="exit_settings();"onSubmit="redirect()">Cancel</a>
+        </div>
+    </div>
+
+  <!-- -->
+  <footer class="footer clearfix">
+    <div class ="footer-container">
+      <p class="small foot">My Tag Board Copyright 2015 </p>
+    </div>
+  </footer>
+</body>
+</html>

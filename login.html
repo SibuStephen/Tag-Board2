@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="icons/css/font-awesome.min.css">
+      <link rel="stylesheet" href="css/normalize.css">
+      <link href="css/main.css" type="text/css" rel="stylesheet"/>
+
+ <script type="text/javascript">
+
+     // var sign_in=document.getElementById("button2");
+
+function redirect()
+{
+ // window.location="index.html";
+
+ if(form1.address.value =="Sibu" && form1.Password1.value=="srijan123")
+ {
+
+   form1.action="index.html";
+ }
+ else
+ {
+  alert("Wrong username try again");
+ }
+}
+</script>
+
+  </head>
+  <body>
+    <section class="common-container container">
+     <div class="">
+       <section class ="">
+         <div class="icon">
+           <a class="icon1"><p>T</p></a>
+         </div>
+         <h1 class="header-title">My Tag Board</h1>
+       </section>
+       <form name="form1" class="login-content" onsubmit=" return redirect();">
+
+       <!--  <h3 class="login-account">Login to your Account</h3>
+ -->
+         <div class="input-f">
+
+           <div class="colore user">
+           <input type="text" id="email-address" name="address" placeholder="UserName" class=" email-address"/>
+           <i class="users fa fa-user"></i>
+           </div>
+
+           <div class="colore lock">
+           <input type="password" id="passwd" name="Password1" placeholder="Password" class="password"/>
+           <i class="locker fa fa-lock"></i>
+           </div>
+           <input id="button2" type="submit" class="sign-ins" value ="SIGN-IN"></input>
+
+         </div>
+       </form>
+      </div>
+    </section>
+  </body>
+</html>
