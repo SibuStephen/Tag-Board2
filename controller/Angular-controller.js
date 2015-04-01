@@ -26,7 +26,6 @@ tagboardController.controller('tagboardCtrl', ['$http','$scope',
 
       else {
         $this.classed="black";
-        $this.class_icon = 'fa-sort-asc';
 
       }
     }

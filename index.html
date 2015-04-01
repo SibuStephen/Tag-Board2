@@ -50,58 +50,80 @@ function exit_settings()
 }
 
 
-// function timer(number) {
-//   for (var i=number;i<8000;) {
-//      if(i=1000) {
-//       i = i+1000;
-//        i++;
-//       return i;
-//     }
-//   }
-// }
+function timer(number) {
+  for (var i=number;i<8000;) {
+     if(i=1000) {
+      i = i+1000;
+       i++;
+      return i;
+    }
+  }
+}
 
-// setInterval(function() {
+setInterval(function() {
 
-//   tile2 = document.querySelectorAll('.detail-tag-name');
-//   icons = document.querySelectorAll('.asc-sort');
-//    test(tile2,icons);
-//  },timer(1000));
+  tile2 = document.querySelectorAll('.detail_tag_name');
+  icons = document.querySelectorAll('.asc-sort');
+   test(tile2,icons);
+ },timer(3000));
 
-// function test(arr2,icon) {
+function test(arr2,icon) {
 
-//   for(var i=0;i < arr2.length;i++) {
+  for(var i=0;i < arr2.length;i++) {
 
-//   for(var j=0;j < icon.length;j++){
+  for(var j=0;j < icon.length;j++){
 
-//     // var $this_value = arr2[i].innerHTML;
+   //  var old_value = arr2[i].innerHTML.defaultValue;
+   // console.log(old_value);
+    var $this_value = arr2[i].innerHTML;
+    var $this_icon = icon[j].innerHTML;
 
-//     var old_value = arr2[i].innerHTML.defaultValue;
+    var $updated_value = Math.floor(Math.random()*100);
 
-//     var $updated_value = Math.floor(Math.random()*100);
+    // var replace_values = old_value.toString();
 
-//     old_value = $updated_value;
+     // $updated_value = $this_value ;
 
-//     if (old_value > $updated_value) {
+     // console.log($updated_value);
+     // console.log($this_value);
 
-//       arr2[i].style.color="green";
-//       icon[j].className += ' fa fa-sort-asc';
 
-//       }
+    if ($updated_value > $this_value) {
 
-//     if (old_value < $updated_value) {
+       arr2[i].style.color="green";
+       icon[j].className +=('fa fa-sort-asc');
 
-//      arr2[i].style.color="green";
-//      icon[j].className += ' fa fa-sort-asc';
-//     }
-//     else {
+      // arr2[i].innerHTML()=$updated_value;
 
-//        arr2[i].style.color="black";
-//       icon[j].className += ' fa fa-sort-asc';
+        // if(icon[j].className = ('fa fa-sort-asc') || (icon[j].className=(' ')))
 
-//     }
-//   }
-//  }
-// }
+        //   icon[j].className.replace('fa fa-sort-desc');
+        //   arr2[i].style.color.replace('green');
+
+    }
+
+    else if ($updated_value < $this_value) {
+
+      arr2[i].style.color="red";
+      icon[j].className +=('fa fa-sort-desc');
+
+      // $this_value=$updated_value;
+
+      // if(icon[j].className = ('fa fa-sort-desc') || (icon[j].className=(' ')))
+      // {
+      //   icon[j].className.replace('fa fa-sort-desc');
+      //   arr2[i].style.color.replace('red');
+      // }
+    }
+    else {
+
+       arr2[i].style.color="black";
+       icon[j].className+=(' ');
+
+    }
+  }
+ }
+}
 
 
   function search_text()
@@ -181,8 +203,8 @@ function exit_settings()
       <div class="tile-details">
         <div class="tag-details">
 <!--         fa {{details.class_icon}} -->
-          <i class="asc-sort fa {{details.class_icon}}"></i>
-          <a class="detail-tag-name inline-block b-color-{{details.classed}}">{{details.tag_name}}
+          <i class="asc-sort fa "></i>
+          <a name ="tag_names" class="detail_tag_name inline-block b-color-{{details.classed}}">{{details.tag_name}}
           </a>
         </div>
         <span class="unit-value">{{details.Unit}}</span>
