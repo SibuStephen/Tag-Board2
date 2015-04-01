@@ -18,7 +18,7 @@
 //  // if ()
 //  //   window.location="index.html";
 // }
-function redirect1()
+function redirect()
 {
   window.location="login.html";
 }
@@ -27,95 +27,86 @@ var modalWindow = document.getElementById("modal_window");
 
 function show()
 {
-  document.getElementById("modal_window").style.display="block";
+  document.getElementById("modal_search_hidden").style.display="block";
   document.getElementById("main-change").style.opacity=0.1;
 }
 
 function exit()
 {
-  document.getElementById("modal_window").style.display="none";
+  document.getElementById("modal_search_hidden").style.display="none";
   document.getElementById("main-change").style.opacity=1;
 }
 
 function setting_redirect()
 {
-  document.getElementById("modal_window1").style.display="block";
+  document.getElementById("modal_settings_hidden").style.display="block";
   document.getElementById("main-change").style.opacity=0.1;
 }
 
 function exit_settings()
 {
-  document.getElementById("modal_window1").style.display="none";
+  document.getElementById("modal_settings_hidden").style.display="none";
   document.getElementById("main-change").style.opacity=1;
 }
 
-//   setInterval(function()
-// {
-//   tile1 = document.querySelectorAll('a1:nth-child(1)');
-//   test(tile1);
-// },100
 
-// );
+// function timer(number) {
+//   for (var i=number;i<8000;) {
+//      if(i=1000) {
+//       i = i+1000;
+//        i++;
+//       return i;
+//     }
+//   }
+// }
 
-function test(arr1) {
-for(var i=0;i < arr1.length;i++) {
- arr1[i].innerHTML = Math.floor(Math.random()*1000);
+// setInterval(function() {
 
-}
-}
+//   tile2 = document.querySelectorAll('.detail-tag-name');
+//   icons = document.querySelectorAll('.asc-sort');
+//    test(tile2,icons);
+//  },timer(1000));
 
-function timer(number)
-{
-  for (var i=number;i<8000;)
-  {
+// function test(arr2,icon) {
 
-         if(i=1000)
-        {
-          i = i+1000;
-           i++;
-          return i;
-        }
+//   for(var i=0;i < arr2.length;i++) {
 
-  }
-}
-  setInterval(function()
+//   for(var j=0;j < icon.length;j++){
 
-{
-  tile2 = document.querySelectorAll('a1');
-   test(tile2);
- },timer(1000)
+//     // var $this_value = arr2[i].innerHTML;
 
-);
-function test(arr2) {
-for(var i=0;i < arr2.length;i++) {
- arr2[i].innerHTML = Math.floor(Math.random()*100);
-}
-}
+//     var old_value = arr2[i].innerHTML.defaultValue;
 
+//     var $updated_value = Math.floor(Math.random()*100);
 
-  setInterval(function()
-{
-  tile1 = document.querySelectorAll('span1');
-   test(tile1);
- },1000
+//     old_value = $updated_value;
 
-);
+//     if (old_value > $updated_value) {
 
-function test(arr1) {
-for(var i=0;i < arr1.length;i++) {
- arr1[i].innerHTML = Math.floor(Math.random()*10);
-}
-}
+//       arr2[i].style.color="green";
+//       icon[j].className += ' fa fa-sort-asc';
 
+//       }
 
-// Test content.
-  // $('.inline-block').text('44');
+//     if (old_value < $updated_value) {
 
+//      arr2[i].style.color="green";
+//      icon[j].className += ' fa fa-sort-asc';
+//     }
+//     else {
+
+//        arr2[i].style.color="black";
+//       icon[j].className += ' fa fa-sort-asc';
+
+//     }
+//   }
+//  }
+// }
 
 
   function search_text()
   {
-    var forms = form2.elements["search"].value;
+    var forms = form_search_section.elements["search"].value;
     if(forms == "not found")
     {
       document.getElementById("not-found").style.display="block";
@@ -130,28 +121,40 @@ for(var i=0;i < arr1.length;i++) {
       document.getElementById("not-found").style.display="none";
     }
 
-    // var founds = document.innerHTML("detailed in tag_list | filter:searchText:strict");
-
-    //    count = 0;
-    //    for (var i=0;i<founds;i++)
-    //    {
-    //     count++;
-    //    }
-    //    return p1.innerHTML(count);
 
   }
 
-  function count()
-  {
 
-   var p2 = document.getElementById('p2');
-   var  p3 = [p2.innerHTML];
-   return p3.length;
+// function sortValue (){
 
-   }
+//    tiles = document.getElementById("tiles");
+
+//    details = document.getElementById("detail_tag_names").innerHTML;
+
+//    detail_array = [tiles];
+
+//    change_icons = this.document.getElementById("sorted_icons");
+
+//   // for each (details in detail_array)
+//   // {
+//      if(details > 12)
+
+//       {
+//          change_icons.className += ' fa fa-sort-asc';
+//       }
+
+//       else if(details < 12)
+//       {
+
+//         change_icons.className += ' fa fa-sort-desc';
+//       }
+
+// }
+
+
 </script>
 </head>
-<body ng-controller="tagboardCtrl">
+<body ng-controller="tagboardCtrl" >
   <header class="header clearfix">
     <section class="container container-header">
       <div class="header-half header-left">
@@ -159,32 +162,34 @@ for(var i=0;i < arr1.length;i++) {
           <a class="logo-link" href="#"><span class="icon-logo">T</span></a>
         </div>
         <div class="tag-board header-inline-block">
-          <a class="small head" href="#">My Tag Board</a>
+          <a class="small head-tag-board" href="#">My Tag Board</a>
         </div>
         <span id="button2" onClick="show();"class=" header-inline-block header-button button-add">Add Tag</span>
       </div>
       <div class="header-half header-right">
         <a class="user-name ">Sid Shankar</a>
         <div class="user-logout header-inline-block">
-          <a id="user_logout" onClick="redirect1();" class="user-name">| Logout</a>
+          <a id="user_logout" onClick="redirect();" class="user-name">| Logout</a>
         </div>
       </div>
     </section>
   </header>
-  <section  id="main-change" class="main clearfix">
+  <section  id="main-change" class="main clearfix" >
     <div class="container">
-    <div ng-repeat="details in tag_list" class="tile">
-      <p class="tile-header">{{details.tag_id}}</p>
+    <div id="tiles" ng-repeat="details in tag_list" class="tile">
+      <h1 class="tile-header">{{details.tag_id}}</h1>
       <div class="tile-details">
-        <div class="text-value">
-          <i class=" asc-sort fa {{details.classes}}"></i>
-          <a1 class="inline-block b-color-{{details.class}}">{{details.tag_name}}</a1>
+        <div class="tag-details">
+<!--         fa {{details.class_icon}} -->
+          <i class="asc-sort fa {{details.class_icon}}"></i>
+          <a class="detail-tag-name inline-block b-color-{{details.classed}}">{{details.tag_name}}
+          </a>
         </div>
-        <span class="small-value">{{details.Unit}}</span>
+        <span class="unit-value">{{details.Unit}}</span>
       </div>
-      <div class="tile-footer"><span1 class=" time-line color-grey">{{details.time}}
+      <div class="tile-footer"><a class=" time-detail time-line color-grey">{{details.time}}
 
-      </span1>
+      </a>
         <span class=" color-grey image-setting"><i class="fa fa-cog" onClick="setting_redirect();">
         </i>
         </span>
@@ -193,38 +198,38 @@ for(var i=0;i < arr1.length;i++) {
 </div>
 </section>
 <!-- -->
-  <div id="modal_window">
+  <div id="modal_search_hidden">
         <div class="search-header">
           <!-- <input id="button1" type="button"/> -->
-          <a class="button close" onClick="exit();"><i class="fa fa-times "></i></a>
-          <h1 class ="header-title">Search Tags</h1>
+          <a class="button close color-blue" onClick="exit();"><i class="fa fa-times "></i></a>
+          <h1 class ="header-title color-blue">Search Tags</h1>
         </div>
-        <form name="form2">
+        <form name="form_search_section">
 
             <input ng-model="searchText.$" type="text" id="search" class="one search-button" placeholder="Search Tags"/>
-            <input type="button" class ="go-button" onClick="search_text();" value="Go"/>
+            <input type="submit" class ="go-button color-blue" onClick="search_text();" value="Go"/>
             <p id="not-found" class="not-found-result result-color">Not Found</p>
 
         </form>
 
         <div id="found">
 
-          <p id="p1"class="found-result result-color" ng-repeat="detailed in tag_list | filter:searchText:strict " onClick="count();">
+          <p id="unit-values" class="found-result result-color" ng-repeat="detailed in tag_list | filter:searchText:strict " onClick="count();">
                Found values -
               {{detailed.tag_id}}
           </p>
         <table>
           <thead>
             <tr>
-              <th class="name">Name</th>
-              <th class="desc">Description</th>
-              <th class="add">Add</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Add</th>
             </tr>
           </thead>
           <tr ng-repeat="details in tag_list | filter:searchText:strict">
             <td>{{details.tag_id}}</td>
             <td>{{details.Unit}}</td>
-            <td><a href="#" class="button circular-model"><i id="one" class="fa fa-plus" onClick="add_one();"></i></a>
+            <td><a href="#" class="button circular-model color-blue"><i id="one" class="fa fa-plus" onClick="add_one();"></i></a>
             </td>
           </tr>
         </table>
@@ -235,19 +240,19 @@ for(var i=0;i < arr1.length;i++) {
 </div>
 <!-- -->
 
-  <div id="modal_window1">
+  <div id="modal_settings_hidden">
    <a class="button close" onClick="exit_settings();"><i class="fa fa-times "></i></a>
-      <section class ="common-header">
-        <h1 class="header-title">Settings</h1>
+      <section class ="common_tagboard_headers">
+        <h1 class="header-title color-blue">Settings</h1>
       </section>
       <form class="login-content" action="index.html">
-        <div class="setting-input">
+        <div class="setting_upper_lower_range">
           <h1 class="header-title">Upper Range</h1><input type="number" name="Enter Upper Range" placeholder="Enter Upper Range" class="one range"/>
           <h1 class="header-title">Lower Range</h1><input type="number" name="Enter LowerRange" placeholder="Enter LowerRange" class="one  range"/>
         </div>
-        <div class="position-setting">
-          <a href="#" id="button2" class="button submit-button" onSubmit="redirect()" >Ok</a>
-          <a href="#" id="button2" class="button submit-button" onClick="exit_settings();"onSubmit="redirect()">Cancel</a>
+        <div class="settings_button-div_posititoning">
+          <a href="#" id="setting_button" class="button submit-button" onSubmit="redirect()" >Ok</a>
+          <a href="#" id="setting_button" class="button submit-button" onClick="exit_settings();"onSubmit="redirect()">Cancel</a>
         </div>
     </div>
 

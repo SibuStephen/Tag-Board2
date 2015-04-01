@@ -3,10 +3,36 @@
 var tagboardController = angular.module('tag-board', []);
 
 tagboardController.controller('tagboardCtrl', ['$http','$scope',
+
   function ($http, $scope) {
+
   $http.get('controller/tabledata.json').success(function(data) {
-      $scope.tag_list = data;
-    });
+
+
+    $scope.tag_list = data;
+
+    for (var i = $scope.tag_list.length - 1; i >= 0; i--) {
+      var $this = $scope.tag_list[i];
+
+      if ($this.tag_name < $this.upper_value) {
+        $this.classed = 'green';
+        $this.class_icon = 'fa-sort-asc';
+      }
+      else if ($this.tag_name > $this.upper_value) {
+
+        $this.classed="red";
+        $this.class_icon = 'fa-sort-desc';
+      }
+
+      else {
+        $this.classed="black";
+        $this.class_icon = 'fa-sort-asc';
+
+      }
+    }
+
+});
+
 }]);
 
 // tagboardController.controller('listagCtrl', ['$http','$scope',
