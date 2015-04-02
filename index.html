@@ -50,71 +50,82 @@ function exit_settings()
 }
 
 
-function timer(number) {
-  for (var i=number;i<8000;) {
-     if(i=1000) {
-      i = i+1000;
-       i++;
-      return i;
-    }
-  }
-}
+//<!-- Increment decrement logic -->
 
-setInterval(function() {
+// function timer(number) {
+//   for (var i=number;i<8000;) {
+//      if(i=1000) {
+//       i = i+1000;
+//        i++;
+//       return i;
+//     }
+//   }
+// }
 
-  tile2 = document.querySelectorAll('.detail_tag_name');
-  icons = document.querySelectorAll('.asc-sort');
-  test(tile2,icons);
- }, timer(1000));
+// setInterval(function() {
 
-function test(arr2,icon) {
+//   tile2 = document.querySelectorAll('.detail_tag_name');
+//   icons = document.querySelectorAll('.asc-sort');
+//   test(tile2,icons);
+//  }, timer(1000));
 
-  for(var i=0;i < arr2.length;i++) {
+// function test(arr2,icon) {
 
-  for(var j=0;j < icon.length;j++){
+//   for(var i=0;i < arr2.length;i++) {
 
-    var $this_value = arr2[i].innerHTML;
-    var $this_icon = icon[j].innerHTML;
+//   for(var j=0;j < icon.length;j++){
 
-    var $updated_value = Math.floor(Math.random()*100);
+//     var $this_value = arr2[i].innerHTML;
+//     var $this_icon = icon[j].innerHTML;
 
-
-    if ($updated_value > $this_value){
-
-       arr2[i].style.color="green";
-       icon[j].className +=('fa fa-sort-asc');
-       arr2[j].innerHTML = $updated_value;
+//     var $updated_value = Math.floor(Math.random()*1000);
 
 
-        // if(icon[j].className = ('fa fa-sort-asc') || (icon[j].className=(' ')))
+//     if ($updated_value > $this_value){
 
-        //   icon[j].className.replace('fa fa-sort-desc');
-        //   arr2[i].style.color.replace('green');
-        //   arr2[i].innerHTML = $updated_value;
+//        arr2[i].style.color = "green";
+//        arr2[i].innerHTML   = $updated_value;
+//        icon[j].className +=('fa fa-sort-asc');
+//        // if((icon[j].className="fa fa-sort-asc"))
+//        // {
+//        //  icon[j].className.replace('fa fa-sort-dsc');
+//        // }
+//        // else
+//        // {
+//        //  icon[j].className+= ('fa fa-sort-dsc');
+//        // }
 
-    }
 
-    else if ($updated_value < $this_value){
+//         // if(icon[j].className = ('fa fa-sort-asc') || (icon[j].className=(' ')))
 
-      arr2[i].style.color="red";
-      icon[j].className +=('fa fa-sort-desc');
-      arr2[j].innerText = $updated_value;
+//         //   icon[j].className.replace('fa fa-sort-desc');
+//         //   arr2[i].style.color.replace('green');
+//         //   arr2[i].innerHTML = $updated_value;
 
-      for(var l=0;l<$this_value;l++)
-      {
-        $updated_value = $this_value;
-      }
-    }
-    else {
+//     }
 
-       arr2[i].style.color="black";
-       icon[j].className+=(' ');
+//     else if ($updated_value < $this_value){
 
-    }
-  }
- }
-}
+//       arr2[i].style.color = "red";
+//       arr2[i].innerHTML   = $updated_value;
+//       icon[j].className  += ('fa fa-sort-desc');
 
+
+//       // for(var l=0;l<$this_value;l++)
+//       // {
+//       //   $updated_value = $this_value;
+//       // }
+//     }
+//     else {
+
+//        arr2[i].style.color="black";
+//        icon[j].className+=(' ');
+
+//     }
+//   }
+//  }
+// }
+// ************************* //
 
   function search_text()
   {
