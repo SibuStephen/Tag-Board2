@@ -64,8 +64,8 @@ setInterval(function() {
 
   tile2 = document.querySelectorAll('.detail_tag_name');
   icons = document.querySelectorAll('.asc-sort');
-   test(tile2,icons);
- },timer(3000));
+  test(tile2,icons);
+ }, timer(1000));
 
 function test(arr2,icon) {
 
@@ -73,47 +73,37 @@ function test(arr2,icon) {
 
   for(var j=0;j < icon.length;j++){
 
-   //  var old_value = arr2[i].innerHTML.defaultValue;
-   // console.log(old_value);
     var $this_value = arr2[i].innerHTML;
     var $this_icon = icon[j].innerHTML;
 
     var $updated_value = Math.floor(Math.random()*100);
 
-    // var replace_values = old_value.toString();
 
-     // $updated_value = $this_value ;
-
-     // console.log($updated_value);
-     // console.log($this_value);
-
-
-    if ($updated_value > $this_value) {
+    if ($updated_value > $this_value){
 
        arr2[i].style.color="green";
        icon[j].className +=('fa fa-sort-asc');
+       arr2[j].innerHTML = $updated_value;
 
-      // arr2[i].innerHTML()=$updated_value;
 
         // if(icon[j].className = ('fa fa-sort-asc') || (icon[j].className=(' ')))
 
         //   icon[j].className.replace('fa fa-sort-desc');
         //   arr2[i].style.color.replace('green');
+        //   arr2[i].innerHTML = $updated_value;
 
     }
 
-    else if ($updated_value < $this_value) {
+    else if ($updated_value < $this_value){
 
       arr2[i].style.color="red";
       icon[j].className +=('fa fa-sort-desc');
+      arr2[j].innerText = $updated_value;
 
-      // $this_value=$updated_value;
-
-      // if(icon[j].className = ('fa fa-sort-desc') || (icon[j].className=(' ')))
-      // {
-      //   icon[j].className.replace('fa fa-sort-desc');
-      //   arr2[i].style.color.replace('red');
-      // }
+      for(var l=0;l<$this_value;l++)
+      {
+        $updated_value = $this_value;
+      }
     }
     else {
 
@@ -203,8 +193,8 @@ function test(arr2,icon) {
       <div class="tile-details">
         <div class="tag-details">
 <!--         fa {{details.class_icon}} -->
-          <i class="asc-sort fa "></i>
-          <a name ="tag_names" class="detail_tag_name inline-block b-color-{{details.classed}}">{{details.tag_name}}
+          <i class="asc-sort fa {{details.class_icon}} "></i>
+          <a name ="tag_names"  class="detail_tag_name inline-block b-color-{{details.classed}}">{{details.tag_name}}
           </a>
         </div>
         <span class="unit-value">{{details.Unit}}</span>

@@ -1,50 +1,72 @@
-'use strict';
+  'use strict';
 
-var tagboardController = angular.module('tag-board', []);
+  var tagboardController = angular.module('tag-board', []);
 
-tagboardController.controller('tagboardCtrl', ['$http','$scope',
+  tagboardController.controller('tagboardCtrl', ['$http','$scope','$interval',
 
-  function ($http, $scope) {
+    function ($http, $scope,$interval) {
 
-  $http.get('controller/tabledata.json').success(function(data) {
+      $http.get('controller/tabledata.json').success(function(data) {
 
 
-    $scope.tag_list = data;
+        $scope.tag_list = data;
 
-    for (var i = $scope.tag_list.length - 1; i >= 0; i--) {
-      var $this = $scope.tag_list[i];
+    //     for (var i =0; i < $scope.tag_list.length-1; i++){
 
-      if ($this.tag_name < $this.upper_value) {
-        $this.classed = 'green';
-        $this.class_icon = 'fa-sort-asc';
-      }
-      else if ($this.tag_name > $this.upper_value) {
+    //      var updated_value = Math.floor(Math.random()*100);
+    //      var this_value = $scope.tag_list[i];
 
-        $this.classed="red";
-        $this.class_icon = 'fa-sort-desc';
-      }
 
-      else {
-        $this.classed="black";
+    //      if (this_value.tag_name < updated_value){
 
-      }
-    }
+    //       this_value.classed = 'green';
+    //       this_value.class_icon = 'fa-sort-asc';
+    //       this_value.tag_name = updated_value;
 
-});
+    //     }
 
-}]);
+    //     else if (this_value.tag_name > updated_value){
 
-// tagboardController.controller('listagCtrl', ['$http','$scope',
-//   function ($http, $scope) {
-//  $http.get('controller/table-description.json').success(function(data){
-//     $scope.tag_lists_data=data;
-//    });
-// }]);
+    //       this_value.classed = "red";
+    //       this_value.class_icon = 'fa-sort-desc';
+    //       this_value.tag_name = updated_value;
 
-// tagboardController.controller('valueCtrl',function ($http , $scope , tagboardCtrl){
-//  (function(tagboardCtrl ,data, tagboardCtrl){
-//     $scope.tag-lists=data;
-//     $scope.tag-lists.to_int();
-//     return $scope.tag-lists;
-//  });
+    //     }
+    //   }
 
+    //   console.log(this_value);
+    //   console.log(updated_value);
+
+    //    $scope.call = function(){
+
+    //         this_value.tag_name;
+    // }
+
+    // $interval( function(){$scope.call();}, 500);
+
+    });
+
+
+    }]);
+
+
+  <!-- -->
+
+    // for (var i = $scope.tag_list.length - 1; i >= 0; i--) {
+    //   var $this = $scope.tag_list[i];
+
+    //   if ($this.tag_name < $this.upper_value) {
+    //     $this.classed = 'green';
+    //     $this.class_icon = 'fa-sort-asc';
+    //   }
+    //   else if ($this.tag_name > $this.upper_value) {
+
+    //     $this.classed="red";
+    //     $this.class_icon = 'fa-sort-desc';
+    //   }
+
+    //   else {
+    //     $this.classed="black";
+
+    //   }
+    // }
