@@ -170,7 +170,7 @@ var forms = form_search_section.elements["search"].value;
 
 .controller('logout',['$scope',function($scope){
 
- $scope.logouts=function()
+ $scope.logout=function()
  {
   window.location="login.html";
  };
@@ -179,7 +179,7 @@ var forms = form_search_section.elements["search"].value;
 
 .controller('logiCtrl',['$scope',function($scope){
 
- $scope.logins=function($event)
+ $scope.login=function($event)
  {
 
   var form1 = document.getElementsByName("form1");
