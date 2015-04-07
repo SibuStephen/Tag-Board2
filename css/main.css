@@ -115,7 +115,7 @@ border-style: solid;
 }
 
 .main {
-  padding: 19px 0px 80px;
+  padding: 100px 0px;
   position: relative;
   background-color: #66a3b6;
 }
@@ -185,11 +185,19 @@ position: relative;
   color: #8895A9;
 }
 
-.footer {
+.footer .page-wrapper:after {
+
   background:#77adbd;
   color: #fff;
   padding: 5px 0;
   position: relative;
+  height: 142px;
+  min-height: 100%;
+  clear:both;
+}
+.page-wrapper:after {
+  content: "";
+  display: block;
 }
 /*
 .footer-container {
@@ -748,4 +756,9 @@ padding: 9px 32px 4px;
   display: none;
   width:80%;
   margin:0 auto;
+}
+.page-wrapper
+
+{
+margin-bottom:-142px;
 }

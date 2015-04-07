@@ -36,11 +36,6 @@
           $icon.addClass('fa-sort-asc');
         }
 
-        else if ($icon.hasClass('fa-cog')){
-
-          $icon.addClass('fa fa-cog');
-        }
-
       });
     }
     return {
@@ -172,3 +167,37 @@ var forms = form_search_section.elements["search"].value;
     }
  };
 }])
+
+.controller('logout',['$scope',function($scope){
+
+ $scope.logouts=function()
+ {
+  window.location="login.html";
+ };
+
+}])
+
+.controller('logiCtrl',['$scope',function($scope){
+
+ $scope.logins=function($event)
+ {
+
+  var form1 = document.getElementsByName("form1");
+
+   if(form1.address.value =="Sibu" && form1.Password1.value=="srijan123")
+
+       {
+
+        form1.location="index.html";
+
+       }
+
+       else
+
+       {
+        alert("Invalid it is");
+       }
+ };
+
+}])
+

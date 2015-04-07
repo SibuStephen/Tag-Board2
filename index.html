@@ -10,39 +10,39 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript">
 
-    var add_tag=document.getElementById("button2");
-    var user_logout=document.getElementById("user_logout");
+//     var add_tag=document.getElementById("button2");
+//     var user_logout=document.getElementById("user_logout");
 
-function redirect()
-{
-  window.location="login.html";
-}
-var modalWrapper = document.getElementById("modal_wrapper");
-var modalWindow = document.getElementById("modal_window");
+// function redirect()
+// {
+//   window.location="login.html";
+// }
+// var modalWrapper = document.getElementById("modal_wrapper");
+// var modalWindow = document.getElementById("modal_window");
 
-function show()
-{
-  document.getElementById("modal_search_hidden").style.display="block";
-  document.getElementById("main-change").style.opacity=0.1;
-}
+// function show()
+// {
+//   document.getElementById("modal_search_hidden").style.display="block";
+//   document.getElementById("main-change").style.opacity=0.1;
+// }
 
-function exit()
-{
-  document.getElementById("modal_search_hidden").style.display="none";
-  document.getElementById("main-change").style.opacity=1;
-}
+// function exit()
+// {
+//   document.getElementById("modal_search_hidden").style.display="none";
+//   document.getElementById("main-change").style.opacity=1;
+// }
 
-function setting_redirect()
-{
-  document.getElementById("modal_settings_hidden").style.display="block";
-  document.getElementById("main-change").style.opacity=0.1;
-}
+// function setting_redirect()
+// {
+//   document.getElementById("modal_settings_hidden").style.display="block";
+//   document.getElementById("main-change").style.opacity=0.1;
+// }
 
-function exit_settings()
-{
-  document.getElementById("modal_settings_hidden").style.display="none";
-  document.getElementById("main-change").style.opacity=1;
-}
+// function exit_settings()
+// {
+//   document.getElementById("modal_settings_hidden").style.display="none";
+//   document.getElementById("main-change").style.opacity=1;
+// }
 
 
 //<!-- Increment decrement logic -->
@@ -172,7 +172,7 @@ function timer(number) {
 
 </script>
 </head>
-<body>
+<body class="page-wrapper">
   <header class="header clearfix">
     <section class="container container-header">
       <div class="header-half header-left" ng-controller="ShowController">
@@ -187,8 +187,8 @@ function timer(number) {
       </div>
       <div class="header-half header-right">
         <a class="user-name ">Sid Shankar</a>
-        <div class="user-logout header-inline-block">
-          <a id="user_logout" ng-click="redirect();" class="user-name">| Logout</a>
+        <div class="user-logout header-inline-block" ng-controller="logout">
+          <a id="user_logout" ng-click="logouts();" class="user-name">| Logout</a>
         </div>
       </div>
     </section>
