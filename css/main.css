@@ -289,14 +289,14 @@ position: relative;
 
 .users
 {
-
  position:absolute;
-
+ right: 1%;
 }
 
 .locker
 {
  position:absolute;
+ right: 1%;
 }
 body
 {
@@ -626,11 +626,16 @@ text-align: center;
     background: #000;
     background: rgba(0,0,0,0.7);
   }*/
+/*  .ng-show
+  {
+        display:block;
+        opacity=1;
+  }*/
   #modal_search_hidden
     {
         display:none;
         left: 50%;
-        top: 42%;
+        top: 27%;
         padding: 10px 40px;
         z-index: 10;
         position: absolute;

@@ -175,14 +175,14 @@ function timer(number) {
 <body>
   <header class="header clearfix">
     <section class="container container-header">
-      <div class="header-half header-left">
+      <div class="header-half header-left" ng-controller="ShowController">
        <div class="logo inline-block">
          <a class="logo-link" href="#"><span class="icon-logo">T</span></a>
         </div>
        <div class="tag-board header-inline-block" >
         <a class="small head-tag-board" href="#">My Tag Board</a>
        </div>
-        <span id="button2" class="header-inline-block header-button button-add">Add Tag
+        <span id="button2" class="header-inline-block header-button" ng-Click="show()" showShowing>Add Tag
         </span>
       </div>
       <div class="header-half header-right">
@@ -206,11 +206,11 @@ function timer(number) {
           </div>
           <span class="unit-value">{{details.Unit}}</span>
         </div>
-        <div class="tile-footer">
+        <div class="tile-footer" ng-controller="settingShow">
           <a class=" time-detail time-line color-grey">{{details.time}}
           </a>
-          <span class=" color-grey image-setting">
-            <i class="fa fa-cog" ng-click="setting_redirect();">
+          <span class=" color-grey image-setting" ng-Click="settings();">
+            <i class="fa fa-cog" >
             </i>
           </span>
         </div>
@@ -218,15 +218,15 @@ function timer(number) {
     </div>
   </section>
 <!-- -->
-   <div id="modal_search_hidden">
+   <div id="modal_search_hidden" ng-controller="hideSection">
         <div class="search-header">
           <!-- <input id="button1" type="button"/> -->
-          <a class="button close color-blue" ng-click="exit();"><i class="fa fa-times "></i></a>
+          <a class="button close color-blue" ng-Click="hide();"><i class="fa fa-times "></i></a>
           <h1 class ="header-title color-blue">Search Tags</h1>
         </div>
-        <form name="form_search_section">
+        <form name="form_search_section" ng-controller="displayList">
           <input ng-model="searchText.$" type="text" id="search" class="one search-button" placeholder="Search Tags"/>
-          <input type="submit" class ="go-button color-blue" ng-click="search_text();" value="Go"/>
+          <input type="submit" class ="go-button color-blue" ng-click="searchText();" value="Go"/>
           <p id="not-found" class="not-found-result result-color">Not Found</p>
         </form>
         <div id="found">
@@ -254,8 +254,8 @@ function timer(number) {
 <!-- </div> -->
 <!-- -->
 
-  <div id="modal_settings_hidden">
-   <a class="button close" ng-click="exit_settings();"><i class="fa fa-times "></i></a>
+  <div id="modal_settings_hidden" ng-controller="settingHide">
+   <a class="button close" ng-click="settinghide()"><i class="fa fa-times "></i></a>
       <section class ="common_tagboard_headers">
         <h1 class="header-title color-blue">Settings</h1>
       </section>
