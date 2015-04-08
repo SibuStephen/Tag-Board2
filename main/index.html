@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html ng-app="tag-board" ng-jq>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="icons/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href="css/main.css" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+  <script type="application/javascript" src="controller/Angular-controller.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">
+
+//     var add_tag=document.getElementById("button2");
+//     var user_logout=document.getElementById("user_logout");
+
+// function redirect()
+// {
+//   window.location="login.html";
+// }
+// var modalWrapper = document.getElementById("modal_wrapper");
+// var modalWindow = document.getElementById("modal_window");
+
+// function show()
+// {
+//   document.getElementById("modal_search_hidden").style.display="block";
+//   document.getElementById("main-change").style.opacity=0.1;
+// }
+
+// function exit()
+// {
+//   document.getElementById("modal_search_hidden").style.display="none";
+//   document.getElementById("main-change").style.opacity=1;
+// }
+
+// function setting_redirect()
+// {
+//   document.getElementById("modal_settings_hidden").style.display="block";
+//   document.getElementById("main-change").style.opacity=0.1;
+// }
+
+// function exit_settings()
+// {
+//   document.getElementById("modal_settings_hidden").style.display="none";
+//   document.getElementById("main-change").style.opacity=1;
+// }
+
+
+//<!-- Increment decrement logic -->
+
+function timer(number) {
+  for (var i=number;i<8000;) {
+     if(i=1000) {
+      i = i+1000;
+       i++;
+      return i;
+    }
+  }
+}
+
+// setInterval(function() {
+
+//   tile2 = document.querySelectorAll('.detail_tag_name');
+//   icons = document.querySelectorAll('.asc-sort');
+//   test(tile2,icons);
+//  }, timer(1000));
+
+// function test(arr2,icon) {
+
+//   for(var i=0;i < arr2.length;i++) {
+
+//   for(var j=0;j < icon.length;j++){
+
+//     var $this_value = arr2[i].innerHTML;
+//     var $this_icon = icon[j].innerHTML;
+
+//     var $updated_value = Math.floor(Math.random()*1000);
+
+
+//     if ($updated_value > $this_value){
+
+//        arr2[i].style.color = "green";
+//        arr2[i].innerHTML   = $updated_value;
+//        icon[j].className +=('fa fa-sort-asc');
+//        // if((icon[j].className="fa fa-sort-asc"))
+//        // {
+//        //  icon[j].className.replace('fa fa-sort-dsc');
+//        // }
+//        // else
+//        // {
+//        //  icon[j].className+= ('fa fa-sort-dsc');
+//        // }
+
+
+//         // if(icon[j].className = ('fa fa-sort-asc') || (icon[j].className=(' ')))
+
+//         //   icon[j].className.replace('fa fa-sort-desc');
+//         //   arr2[i].style.color.replace('green');
+//         //   arr2[i].innerHTML = $updated_value;
+
+//     }
+
+//     else if ($updated_value < $this_value){
+
+//       arr2[i].style.color = "red";
+//       arr2[i].innerHTML   = $updated_value;
+//       icon[j].className  += ('fa fa-sort-desc');
+
+
+//       // for(var l=0;l<$this_value;l++)
+//       // {
+//       //   $updated_value = $this_value;
+//       // }
+//     }
+//     else {
+
+//        arr2[i].style.color="black";
+//        icon[j].className+=(' ');
+
+//     }
+//   }
+//  }
+// }
+// ************************* //
+
+  function search_text()
+  {
+    var forms = form_search_section.elements["search"].value;
+    if(forms == "not found")
+    {
+      document.getElementById("not-found").style.display="block";
+      document.getElementById("found").style.display="none";
+    }
+      if (forms==" "){
+      document.getElementById("not-found").style.display="none";
+      document.getElementById("found").style.display="none";
+    }
+    else if (forms = "found"){
+      document.getElementById("found").style.display="block";
+      document.getElementById("not-found").style.display="none";
+    }
+  }
+
+
+// function sortValue (){
+
+//    tiles = document.getElementById("tiles");
+
+//    details = document.getElementById("detail_tag_names").innerHTML;
+
+//    detail_array = [tiles];
+
+//    change_icons = this.document.getElementById("sorted_icons");
+
+//   // for each (details in detail_array)
+//   // {
+//      if(details > 12)
+
+//       {
+//          change_icons.className += ' fa fa-sort-asc';
+//       }
+
+//       else if(details < 12)
+//       {
+
+//         change_icons.className += ' fa fa-sort-desc';
+//       }
+
+// }
+
+
+</script>
+</head>
+<body class="page-wrapper">
+  <header class="header clearfix">
+    <section class="container container-header">
+      <div class="header-half header-left" ng-controller="ShowController">
+       <div class="logo inline-block">
+         <a class="logo-link" href="#"><span class="icon-logo">T</span></a>
+        </div>
+       <div class="tag-board header-inline-block" >
+        <a class="small head-tag-board" href="#">My Tag Board</a>
+       </div>
+        <span id="button2" class="header-inline-block header-button" ng-Click="show()" showShowing>Add Tag
+        </span>
+      </div>
+      <div class="header-half header-right">
+        <a class="user-name ">Sid Shankar</a>
+        <div class="user-logout header-inline-block" ng-controller="logout">
+          <a id="user_logout" ng-click="logout();" class="user-name">| Logout</a>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <section  id="main-change" class="main clearfix" >
+    <div class="container" ng-controller="tagboardCtrl">
+      <div id="tiles" ng-repeat="details in tag_list" class="tile" tag-update>
+        <h1 class="tile-header">{{details.tag_id}}</h1>
+        <div class="tile-details">
+          <div class="tag-details">
+            <i class="asc-sort fa {{details.class_icon}} "></i>
+            <a name ="tag_names"  class="detail_tag_name inline-block b-color-{{details.classed}}">{{details.tag_name}}
+            </a>
+          </div>
+          <span class="unit-value">{{details.Unit}}</span>
+        </div>
+        <div class="tile-footer" ng-controller="settingShow">
+          <a class=" time-detail time-line color-grey">{{details.time}}
+          </a>
+          <span class=" color-grey image-setting" ng-Click="settings();">
+            <i class="fa fa-cog" >
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- -->
+   <div id="modal_search_hidden" ng-controller="hideSection">
+        <div class="search-header">
+          <!-- <input id="button1" type="button"/> -->
+          <a class="button close color-blue" ng-Click="hide();"><i class="fa fa-times "></i></a>
+          <h1 class ="header-title color-blue">Search Tags</h1>
+        </div>
+        <form name="form_search_section" ng-controller="displayList">
+          <input ng-model="searchText.$" type="text" id="search" class="one search-button" placeholder="Search Tags"/>
+          <input type="submit" class ="go-button color-blue" ng-click="searchText();" value="Go"/>
+          <p id="not-found" class="not-found-result result-color">Not Found</p>
+        </form>
+        <div id="found">
+          <p id="unit-values" class="found-result result-color" ng-repeat="detailed in tag_list | filter:searchText:strict ">
+               Found values -
+              {{detailed.tag_id}}
+          </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Add</th>
+            </tr>
+          </thead>
+          <tr ng-repeat="details in tag_list | filter:searchText:strict">
+            <td>{{details.tag_id}}</td>
+            <td>{{details.Unit}}</td>
+            <td><a href="#" class="button circular-model color-blue"><i id="one" class="fa fa-plus"></i></a>
+            </td>
+          </tr>
+        </table>
+        </div>
+   </div>
+<!-- </div> -->
+<!-- -->
+
+  <div id="modal_settings_hidden" ng-controller="settingHide">
+   <a class="button close" ng-click="settinghide()"><i class="fa fa-times "></i></a>
+      <section class ="common_tagboard_headers">
+        <h1 class="header-title color-blue">Settings</h1>
+      </section>
+      <form class="login-content">
+        <div class="setting_upper_lower_range">
+          <h1 class="header-title">Upper Range</h1><input type="number" name="Enter Upper Range" placeholder="Enter Upper Range" class="one range"/>
+          <h1 class="header-title">Lower Range</h1><input type="number" name="Enter LowerRange" placeholder="Enter LowerRange" class="one  range"/>
+        </div>
+        <div class="settings_button-div_posititoning">
+          <a href="#" id="setting_button" class="button submit-button" onSubmit="redirect()" >Ok</a>
+          <a href="#" id="setting_button" class="button submit-button" ng-click="exit_settings();"onSubmit="redirect()">Cancel</a>
+        </div>
+        </form>
+    </div>
+
+  <!-- -->
+  <footer class="footer clearfix">
+   <div class ="footer-container">
+    <p class="small foot">My Tag Board Copyright 2015 </p>
+   </div>
+  </footer>
+</body>
+</html>
