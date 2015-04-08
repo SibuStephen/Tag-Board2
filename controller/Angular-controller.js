@@ -15,8 +15,8 @@
 
         var $this = $(this);
         var $value = $this.find('.detail_tag_name');
-        var $icon = $this.find('.fa');
-        var $setting = $this.find('.fa fa-cog');
+        var $icon = $this.find('.tag-details .fa');
+        // var $setting = $this.find('.fa fa-cog');
         var $updated_value = Math.floor(Math.random()*1000);
         var $current_value = $value.text();
         // Update value.
@@ -51,13 +51,12 @@
     $scope.show=function()
   {
 
-  var button1 =document.getElementById("modal_search_hidden");
-  var button2 =document.getElementById("modal_search_hidden");
+   var button1 =document.getElementById("modal_search_hidden");
+   var button2 =document.getElementById("modal_search_hidden");
 
-  button1.style.display="block";
-  button2.style.opacity=1;
-
- };
+   button1.style.display="block";
+   button2.style.opacity=1;
+  };
 
 }])
 
@@ -82,9 +81,9 @@
 // }
 // }])
 
-// .directive('showShowing',['$show', function($show){
+// .directive('showShowing',['$show','$scope', function($show){
 
-//    clickShow = function(){
+//    $scope.clickShow = function(){
 
 //   function show(buttons)
 //   {
@@ -108,50 +107,54 @@
 
   $scope.show = function() {
 
-   var  button1 = document.getElementById("modal_search_hidden");
+    var  button1 = document.getElementById("modal_search_hidden");
     button1.style.display="block";
     button1.style.opacity=1;
-  document.getElementById("main-change").style.opacity=0.1;
+    document.getElementById("main-change").style.opacity=0.1;
   };
 }])
 
 .controller('hideSection',['$scope',function($scope){
 
- $scope.hide = function(){
+ $scope.hide = function()
+ {
 
- var  button = document.getElementById("modal_search_hidden");
+   var  button = document.getElementById("modal_search_hidden");
       button.style.display="none";
       button.style.opacity=1;
- document.getElementById("main-change").style.opacity=1;
+   document.getElementById("main-change").style.opacity=1;
  };
 }])
 
 .controller('settingShow',['$scope',function($scope){
 
- $scope.settings = function(){
+ $scope.settings = function()
+ {
 
- var  button = document.getElementById("modal_settings_hidden");
+   var  button = document.getElementById("modal_settings_hidden");
       button.style.display="block";
       button.style.opacity=1;
-document.getElementById("main-change").style.opacity=0.1;
+   document.getElementById("main-change").style.opacity=0.1;
  };
 }])
 
-.controller('settingHide',['$scope',function($scope){
+.controller('settingHide',['$scope',function($scope)
+{
+  $scope.settinghide = function()
 
-$scope.settinghide = function(){
-
- var  button = document.getElementById("modal_settings_hidden");
+{
+  var  button = document.getElementById("modal_settings_hidden");
       button.style.display="none";
       button.style.opacity=0.1;
-document.getElementById("main-change").style.opacity=1;
+   document.getElementById("main-change").style.opacity=1;
  };
 }])
 
-.controller('displayList',['$scope',function($scope){
+.controller('displayList',['$scope',function($scope)
+{
 
-$scope.searchText = function(){
-var forms = form_search_section.elements["search"].value;
+ $scope.searchText = function(){
+  var forms = form_search_section.elements["search"].value;
     if(forms == "not found")
     {
       document.getElementById("not-found").style.display="block";
@@ -168,18 +171,19 @@ var forms = form_search_section.elements["search"].value;
  };
 }])
 
-.controller('logout',['$scope',function($scope){
-
- $scope.logout=function()
+.controller('logout',['$scope',function($scope)
  {
-  window.location="login.html";
- };
 
+   $scope.logout=function()
+  {
+    window.location="login.html";
+  };
 }])
 
 .controller('logiCtrl',['$scope',function($scope){
 
  $scope.login=function($event)
+
  {
 
   var form1 = document.getElementsByName("form1");
@@ -198,6 +202,5 @@ var forms = form_search_section.elements["search"].value;
         alert("Invalid it is");
        }
  };
-
 }])
 
