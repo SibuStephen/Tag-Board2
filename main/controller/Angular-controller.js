@@ -1,17 +1,34 @@
+// moongoose = require('mongoose');
+// var imports = require('model.js');
+
+  function console_print(variables)
+  {
+   console.log(variables);
+  }
+
   'use strict';
 
-var tagboardController = angular.module('tag-board', [])
+ // tags = moongoose.connect('mongodb://localhost/Tag_list');
+
+ var tagboardController = angular.module('tag-board', [])
 
 
-  .controller('tagboardCtrl', ['$http','$scope',
-    function ($http, $scope) {
+    tagboardController.controller('tagboardCtrl',['$http','$scope',tag
 
-      $http.get('/controller/tabledata.json').success(function(data) {
-      $scope.tag_list = data;
-    });
-  }])
+      function ($http, $scope,tag) {
 
-  .directive('tagUpdate', ['$interval', function($interval) {
+
+      console.log(tag);
+
+        $http.get(tags).success(function(data) {
+        $scope.tag_list = data;
+
+      });
+    }])
+
+ console.log(tags);
+
+  tagboardController.directive('tagUpdate', ['$interval', function($interval) {
     function updateTile(tiles) {
       tiles.each(function() {
 
@@ -48,7 +65,7 @@ var tagboardController = angular.module('tag-board', [])
     }
   }])
 
-  .directive('MyController', ['$scope', function($scope) {
+  tagboardController.directive('MyController', ['$scope', function($scope) {
 
     $scope.show=function()
   {
@@ -105,7 +122,7 @@ var tagboardController = angular.module('tag-board', [])
 // }])
 
 
-.controller('ShowController', ['$scope', function($scope) {
+tagboardController.controller('ShowController', ['$scope', function($scope) {
 
   $scope.show = function() {
 
@@ -116,7 +133,7 @@ var tagboardController = angular.module('tag-board', [])
   };
 }])
 
-.controller('hideSection',['$scope',function($scope){
+tagboardController.controller('hideSection',['$scope',function($scope){
 
  $scope.hide = function()
  {
@@ -128,7 +145,7 @@ var tagboardController = angular.module('tag-board', [])
  };
 }])
 
-.controller('settingShow',['$scope',function($scope){
+tagboardController.controller('settingShow',['$scope',function($scope){
 
  $scope.settings = function()
  {
@@ -140,7 +157,7 @@ var tagboardController = angular.module('tag-board', [])
  };
 }])
 
-.controller('settingHide',['$scope',function($scope)
+tagboardController.controller('settingHide',['$scope',function($scope)
 {
   $scope.settinghide = function()
 
@@ -152,7 +169,7 @@ var tagboardController = angular.module('tag-board', [])
  };
 }])
 
-.controller('displayList',['$scope',function($scope)
+tagboardController.controller('displayList',['$scope',function($scope)
 {
 
  $scope.searchText = function(){
@@ -173,7 +190,7 @@ var tagboardController = angular.module('tag-board', [])
  };
 }])
 
-.controller('logout',['$scope',function($scope)
+tagboardController.controller('logout',['$scope',function($scope)
  {
 
    $scope.logout=function()
@@ -182,7 +199,7 @@ var tagboardController = angular.module('tag-board', [])
   };
 }])
 
-.controller('logiCtrl',['$scope',function($scope){
+tagboardController.controller('logiCtrl',['$scope',function($scope){
 
  $scope.login=function($event)
 
