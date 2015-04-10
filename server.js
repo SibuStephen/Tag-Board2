@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var application = express();
 var autoIncrement = require('mongoose-auto-increment');
 
-mongoose.connect('mongodb://localhost/Tag_list');
+var io = mongoose.connect('mongodb://localhost/Tag_list');
 
 application.use(express.static(__dirname +'/main'));
 
@@ -26,17 +26,33 @@ MyTagBoard.find(function(err, result){
   if(err){
     c("Error: " + err);
   }else{
-    c(result);
+    // c(result);
   }
 });
+/*ssssssss*/
+   application.get('/index', function(req, res) {
 
-module.exports = mongoose.model('Tag_list',MyTagBoardSchema);
+        // use mongoose to get all todos in the database
+        MyTagBoard.find(function(err, todos)
+        {
 
-application.get('/index.html',function(req, res) {
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
 
-        res.send(MyTagBoard);
+            res.json(todos);
+            c(todos);
+        });
+  });
+/*ssssssss*/
 
-    });
+// module.exports = mongoose.model('Tag_list',MyTagBoardSchema);
+
+// application.get('/index.html',function(req, res) {
+
+//         res.send(MyTagBoard);
+
+//     });
 
 
 application.listen(8001);

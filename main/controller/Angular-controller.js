@@ -12,21 +12,16 @@
 
  var tagboardController = angular.module('tag-board', [])
 
+    .controller('tagboardCtrl',['$scope','$http',
 
-    tagboardController.controller('tagboardCtrl',['$http','$scope',tag
+      function ($scope,$http) {
 
-      function ($http, $scope,tag) {
-
-
-      console.log(tag);
-
-        $http.get(tags).success(function(data) {
+        $http.get('/index').success(function(data) {
         $scope.tag_list = data;
-
       });
     }])
 
- console.log(tags);
+  // console.log(tag_list);
 
   tagboardController.directive('tagUpdate', ['$interval', function($interval) {
     function updateTile(tiles) {

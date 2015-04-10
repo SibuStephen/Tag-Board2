@@ -15,12 +15,14 @@ var MyTagBoardSchema = new mongoose.Schema({
 
 var MyTagBoard = mongoose.model('MyTagBoard', MyTagBoardSchema , 'MyTagBoard');
 
-MyTagBoard.find(function(err, result){
+MyTagBoard.find(function(err, result,res){
   if(err){
     c("Error: " + err);
   }else{
     console.log(result);
+
   }
 });
 
-module.exports = mongoose.model('Tag_list',MyTagBoardSchema);
+module.exports = mongoose.model('MyTagBoard', MyTagBoardSchema , 'MyTagBoard');
+// console.log(MyTagBoard);
