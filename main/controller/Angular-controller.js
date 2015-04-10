@@ -18,10 +18,30 @@
 
         $http.get('/index').success(function(data) {
         $scope.tag_list = data;
-      });
+        // $scope.tag_list.each(function() {
+
+        // $this = $(this);
+        //   if($current_value < uppervalue) {
+        //       $this.color: 'green';
+        //     }
+        // });
+        // });
+        // $http.get('tags.json', function(data) {
+
+        //   $tag = data[0];
+        //   $http.post('/tag', $tag);
+
+        });
     }])
 
   // console.log(tag_list);
+  // .controller('range-setting',['$scope','$http',
+  //    function ($scope,$http)
+  //    {
+  //     $this = ($this)
+  //        $this.
+  //    }
+  //   ]);
 
   tagboardController.directive('tagUpdate', ['$interval', function($interval) {
     function updateTile(tiles) {
@@ -35,8 +55,8 @@
         var $current_value = $value.text();
         // Update value.
         $value.text($updated_value);
+
         if ($current_value > $updated_value) {
-          $value.css('color', 'green');
           if ($icon.hasClass('fa-sort-asc')) {
             $icon.removeClass('fa-sort-asc');
           }
@@ -64,7 +84,6 @@
 
     $scope.show=function()
   {
-
    var button1 =document.getElementById("modal_search_hidden");
    var button2 =document.getElementById("modal_search_hidden");
 
@@ -73,49 +92,6 @@
   };
 
 }])
-
-/***** Directive not working ***/
-// .directive('shows',['$show',function($show){
-
-// function show(button1,button2,scope)
-// {
-//   scope.button1.style.display="block";
-//   scope.button2.style.opacity=1;
-// }
-// return{
-//   link: $show(function()
-//   {
-//     var button1 =document.getElementById("modal_search_hidden");
-//     var button2 =document.getElementById("modal_search_hidden");
-//     scope: {
-//             eventHandler: '&ngClick'
-//            }
-//    show(button1,button2,scope);
-//   })
-// }
-// }])
-
-// .directive('showShowing',['$show','$scope', function($show){
-
-//    $scope.clickShow = function(){
-
-//   function show(buttons)
-//   {
-//     buttons.style.display="block";
-//     buttons.style.opacity=1;
-//   }
-// }
-// return {
-
-//   link: $show(function(){
-
-//     button1 = document.getElementById("modal_search_hidden");
-//     show(button1);
-
-//   })
-// }
-// }])
-
 
 tagboardController.controller('ShowController', ['$scope', function($scope) {
 
@@ -164,25 +140,45 @@ tagboardController.controller('settingHide',['$scope',function($scope)
  };
 }])
 
-tagboardController.controller('displayList',['$scope',function($scope)
-{
+tagboardController.controller('displayList',['$scope','$http',
 
- $scope.searchText = function(){
-  var forms = form_search_section.elements["search"].value;
-    if(forms == "not found")
-    {
-      document.getElementById("not-found").style.display="block";
-      document.getElementById("found").style.display="none";
-    }
-      if (forms==" "){
-      document.getElementById("not-found").style.display="none";
-      document.getElementById("found").style.display="none";
-    }
-    else if (forms = "found"){
-      document.getElementById("found").style.display="block";
-      document.getElementById("not-found").style.display="none";
-    }
- };
+  function ($scope,$http)
+{
+   $http.get('tags.json').success(function(datas)
+ {
+     $scope.json_tags = datas;
+       $scope.searchTexts = function()
+   {
+
+       form_search_sections = document.getElementById("form_search_section");
+
+       formse = form_search_sections.elements["search"].value;
+
+        ft = JSON.stringify(datas)
+        tryed = JSON.parse(ft);
+
+        for(var i = 0 ;i< tryed.length;i++)
+        {
+
+        console.log();
+
+
+          if (formse == tryed[i].tag_id)
+          {
+
+
+            document.getElementById("found").style.display="block";
+
+          }
+
+         else if (formse == "")
+          {
+             document.getElementById("not-found").style.display="none";
+             document.getElementById("found").style.display="none";
+          }
+      }
+    };
+  });
 }])
 
 tagboardController.controller('logout',['$scope',function($scope)

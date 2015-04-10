@@ -1,0 +1,15 @@
+Search from json.
+
+
+Call http.post on add click with this row data
+
+Now on that post url we will insert that in mongoDB
+
+application.post('/tag', function(req, res) {
+    console.log(res);
+    MyTagBoard.create({
+      tag_id:  res.body.tag_id,
+      tag_name: res.body.tag_name,
+      Unit:   res.unit,
+      time: res.body.time,
+    });

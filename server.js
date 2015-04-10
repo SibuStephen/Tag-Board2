@@ -41,8 +41,28 @@ MyTagBoard.find(function(err, result){
                 res.send(err)
 
             res.json(todos);
-            c(todos);
+            // c(todos);
         });
+  });
+   application.post('/tag', function(req, res) {
+    console.log(res);
+    MyTagBoard.create({
+      tag_id:  res.body.tag_id,
+      tag_name: res.body.tag_name,
+      Unit:   res.unit,
+      time: res.body.time,
+    });
+        // // use mongoose to get all todos in the database
+        // MyTagBoard.create(function(err, todos)
+        // {
+
+        //     // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        //     if (err)
+        //         res.send(err)
+
+        //     res.json(todos);
+        //     // c(todos);
+        // });
   });
 /*ssssssss*/
 
@@ -55,6 +75,6 @@ MyTagBoard.find(function(err, result){
 //     });
 
 
-application.listen(8001);
+application.listen(8000);
 
 console.log("Application is listening to port number 8080");
