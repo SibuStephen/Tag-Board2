@@ -12,11 +12,18 @@
 
  var tagboardController = angular.module('tag-board', [])
 
-    .controller('tagboardCtrl',['$scope','$http',
+// tagboardController.config(['$httpProvider',
+//   function($httpProvider)
+//    {
+//         $httpProvider.defaults.useXDomain = true;
+//         delete $httpProvider.defaults.headers.common['X-Requested-With'];
+//   }]);
+
+    tagboardController.controller('tagboardCtrl',['$scope','$http',
 
       function ($scope,$http) {
 
-        $http.get('/index').success(function(data) {
+        $http.get('/index.json').success(function(data) {
         $scope.tag_list = data;
         // $scope.tag_list.each(function() {
 
@@ -142,26 +149,27 @@ tagboardController.controller('settingHide',['$scope',function($scope)
 
 tagboardController.controller('displayList',['$scope','$http',
 
+  // $httpProvider.defaults.useXDomain = true;
+  //       delete $httpProvider.defaults.headers.common['X-Requested-With'];
   function ($scope,$http)
 {
-   $http.get('tags.json').success(function(datas)
+   $http.get('/controller/tags1.json').success(function(datas)
  {
      $scope.json_tags = datas;
-       $scope.searchTexts = function()
+     $scope.searchTexts = function()
    {
 
        form_search_sections = document.getElementById("form_search_section");
 
        formse = form_search_sections.elements["search"].value;
 
-        ft = JSON.stringify(datas)
+        ft = JSON.stringify(datas);
         tryed = JSON.parse(ft);
 
         for(var i = 0 ;i< tryed.length;i++)
         {
 
         console.log();
-
 
           if (formse == tryed[i].tag_id)
           {
@@ -178,8 +186,68 @@ tagboardController.controller('displayList',['$scope','$http',
           }
       }
     };
+
   });
-}])
+
+   $scope.sendData = function(events){
+
+
+        // retro = JSON.stringify(events);
+
+           // var request = $http({
+           //      method: "post",
+           //      url: "http://localhost:8000/store.json",
+           //      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+           //      data: retro
+           //  });
+
+              // res.send(request);
+              // console.log(resp);
+           var eventsone = {
+
+                "Unit": events.Unit ,
+              "tag_id": events.tag_id,
+          "lowervalue": events.lowervalue,
+            "tag_name": events.tag_name,
+               "time" : events.time,
+        "upper_value" : events.upper_value
+
+         }
+
+         datas = JSON.stringify(eventsone);
+           console.log(events);
+         $scope.codeStatus = "";
+
+         request = $.ajax({
+
+                method: "post",
+                url: "/store.json",
+                // headers: {'Content-Type': 'Access-Control-Allow-Headers'},
+                data: datas,
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                // crossDomain:true,
+              });
+    }
+
+ }])
+
+    // $http.get('/store.json').success(function(req,res)
+
+      // {
+
+         // var request = $http({
+         //        method: "post",
+         //        url: "localhost:8000/store.json",
+         //        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+         //        data: events
+         //    });
+
+           // console.log(request);
+      // });
+//       });
+//   }
+// }])
 
 tagboardController.controller('logout',['$scope',function($scope)
  {
@@ -200,17 +268,19 @@ tagboardController.controller('logiCtrl',['$scope',function($scope){
 
    if(form1.address.value =="Sibu" && form1.Password1.value=="srijan123")
 
-       {
+    {
 
-        form1.location="index.html";
+     form1.location="index.html";
 
-       }
+    }
 
-       else
+    else
 
-       {
-        alert("Invalid it is");
-       }
+    {
+
+     alert("Invalid it is");
+
+    }
  };
 }])
 

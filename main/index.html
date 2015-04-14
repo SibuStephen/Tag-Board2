@@ -117,7 +117,7 @@ function timer(number) {
           <tr ng-repeat="detailed in json_tags | filter:searchText:strict">
             <td>{{detailed.tag_id}}</td>
             <td>{{detailed.Unit}}</td>
-            <td><a href="#" class="button circular-model color-blue"><i id="one" class="fa fa-plus"></i></a>
+            <td><a  class="button circular-model color-blue" ng-click="sendData(this.detailed);"><i id="one" class="fa fa-plus"></i></a>
             </td>
           </tr>
         </table>
