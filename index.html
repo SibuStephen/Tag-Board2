@@ -259,12 +259,12 @@ function timer(number) {
       </section>
       <form class="login-content">
         <div class="setting_upper_lower_range">
-          <h1 class="header-title">Upper Range</h1><input type="number" name="Enter Upper Range" placeholder="Enter Upper Range" class="one range"/>
-          <h1 class="header-title">Lower Range</h1><input type="number" name="Enter LowerRange" placeholder="Enter LowerRange" class="one  range"/>
+          <h1 class="header-title">Upper Range</h1><input id ="up" type="number" name="UpperRange" placeholder="Enter Upper Range" class="one range"/>
+          <h1 class="header-title">Lower Range</h1><input id="mp" type="number" name="LowerRange" placeholder="Enter LowerRange" class="one  range"/>
         </div>
         <div class="settings_button-div_posititoning">
-          <a href="#" id="setting_button" class="button submit-button" onSubmit="redirect()" >Ok</a>
-          <a href="#" id="setting_button" class="button submit-button" ng-click="exit_settings();"onSubmit="redirect()">Cancel</a>
+          <a  id="setting_button" class="button submit-button" ng-click="redirect()" >Ok</a>
+          <a  id="setting_button" class="button submit-button" ng-click="exit_settings();">Cancel</a>
         </div>
         </form>
     </div>

@@ -45,6 +45,60 @@ function c(s){
         });
      });
 
+   application.post('/stores.json',function(req,res){
+
+        res.send("I'm here");
+     stores = '';
+     sds = '';
+     unit_converted= '';
+    tag_id_converted = '';
+    // res.writeHead(200, {"Content-Type": "text/json"});
+
+    req.on('data', function(data) {
+        stores += data;
+    });
+
+    req.on('end', function() {
+
+        sds = JSON.parse(stores);
+
+        c(sds);
+
+      MyTagBoard.find(function(tag_id){
+
+        if(tag_id == sds.tag_id)
+        {
+
+              MyTagBoard.update({
+
+                tag_id : sds.tag_id,
+                lowervalue: sds.lowervalue,
+                upper_value:sds.upper_value
+
+           });
+        }
+
+     })
+
+    });
+
+   application.get('/index.json', function(req, res) {
+
+        MyTagBoard.create(function(err, todos)
+
+        {
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+
+            res.json(todos);
+
+        });
+  });
+
+
+   });
+
    application.post('/store.json', function(req,res) {
 
      store = '';
@@ -67,8 +121,8 @@ function c(s){
 
       MyTagBoard.create({
 
-        Unit: unit_converted,
-        tag_id: tag_id_converted,
+        Unit: sd.Unit,
+        tag_id: sd.tag_id,
         lowervalue: sd.lowervalue,
         tag_name: sd.tag_name,
         time:   sd.time,
@@ -78,6 +132,7 @@ function c(s){
 
     });
 
+   application.get('/index.json', function(req, res) {
 
         MyTagBoard.create(function(err, todos)
 
@@ -87,9 +142,9 @@ function c(s){
                 res.send(err)
 
             res.json(todos);
-            c(todos);
-        });
 
+        });
+  });
 });
 
 application.listen(8002);

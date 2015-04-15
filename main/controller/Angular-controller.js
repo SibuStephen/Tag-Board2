@@ -1,23 +1,13 @@
-// moongoose = require('mongoose');
-// var imports = require('model.js');
-
-  function console_print(variables)
+function console_print(variables)
   {
    console.log(variables);
   }
 
   'use strict';
 
- // tags = moongoose.connect('mongodb://localhost/Tag_list');
 
  var tagboardController = angular.module('tag-board', [])
 
-// tagboardController.config(['$httpProvider',
-//   function($httpProvider)
-//    {
-//         $httpProvider.defaults.useXDomain = true;
-//         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-//   }]);
 
     tagboardController.controller('tagboardCtrl',['$scope','$http',
 
@@ -25,6 +15,7 @@
 
         $http.get('/index.json').success(function(data) {
         $scope.tag_list = data;
+
         // $scope.tag_list.each(function() {
 
         // $this = $(this);
@@ -40,15 +31,6 @@
 
         });
     }])
-
-  // console.log(tag_list);
-  // .controller('range-setting',['$scope','$http',
-  //    function ($scope,$http)
-  //    {
-  //     $this = ($this)
-  //        $this.
-  //    }
-  //   ]);
 
   tagboardController.directive('tagUpdate', ['$interval', function($interval) {
     function updateTile(tiles) {
@@ -97,7 +79,6 @@
    button1.style.display="block";
    button2.style.opacity=1;
   };
-
 }])
 
 tagboardController.controller('ShowController', ['$scope', function($scope) {
@@ -135,7 +116,8 @@ tagboardController.controller('settingShow',['$scope',function($scope){
  };
 }])
 
-tagboardController.controller('settingHide',['$scope',function($scope)
+tagboardController.controller('settingHide',['$scope',
+  function ($scope)
 {
   $scope.settinghide = function()
 
@@ -145,6 +127,7 @@ tagboardController.controller('settingHide',['$scope',function($scope)
       button.style.opacity=0.1;
    document.getElementById("main-change").style.opacity=1;
  };
+
 }])
 
 tagboardController.controller('displayList',['$scope','$http',
@@ -153,9 +136,10 @@ tagboardController.controller('displayList',['$scope','$http',
   //       delete $httpProvider.defaults.headers.common['X-Requested-With'];
   function ($scope,$http)
 {
-   $http.get('/controller/tags1.json').success(function(datas)
+   $http.get('/index.json').success(function(datas)
  {
      $scope.json_tags = datas;
+
      $scope.searchTexts = function()
    {
 
@@ -187,23 +171,12 @@ tagboardController.controller('displayList',['$scope','$http',
       }
     };
 
+
   });
 
    $scope.sendData = function(events){
 
-
-        // retro = JSON.stringify(events);
-
-           // var request = $http({
-           //      method: "post",
-           //      url: "http://localhost:8000/store.json",
-           //      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-           //      data: retro
-           //  });
-
-              // res.send(request);
-              // console.log(resp);
-           var eventsone = {
+    var eventsone = {
 
                 "Unit": events.Unit ,
               "tag_id": events.tag_id,
@@ -215,39 +188,58 @@ tagboardController.controller('displayList',['$scope','$http',
          }
 
          datas = JSON.stringify(eventsone);
-           console.log(events);
-         $scope.codeStatus = "";
+         console.log(events);
 
          request = $.ajax({
 
                 method: "post",
                 url: "/store.json",
-                // headers: {'Content-Type': 'Access-Control-Allow-Headers'},
                 data: datas,
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
-                // crossDomain:true,
+                crossDomain:true,
               });
     }
 
- }])
+ $scope.redirect = function(events){
 
-    // $http.get('/store.json').success(function(req,res)
 
-      // {
+    textboxUpper = document.getElementById("ups");
+    textboxLower = document.getElementById("lw");
+    header_value = document.getElementByClassName("tile-header");
 
-         // var request = $http({
-         //        method: "post",
-         //        url: "localhost:8000/store.json",
-         //        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-         //        data: events
-         //    });
+    value_upper  =  textboxUpper.value;
+    value_lower  =  textboxLower.value;
+    value_header = header_value.value;
 
-           // console.log(request);
-      // });
-//       });
-//   }
-// }])
+    console.log(value_header);
+
+    var values_upper_lower = {
+
+          "tag_id"     : events.tag_id,
+          "lowervalue" : events.value_lower,
+         "upper_value" : events.value_upper
+    }
+
+   upper_lower = JSON.stringify(values_upper_lower);
+
+    console.log(upper_lower);
+
+     request_values = $.ajax({
+
+          method:"post",
+          url:"/stores.json",
+          data: upper_lower,
+          dataType: "json",
+          contentType: "application/json; charset=UTF-8",
+          crossDomain:true
+    });
+
+    console.log(request_values);
+  }
+
+}])
+
 
 tagboardController.controller('logout',['$scope',function($scope)
  {
@@ -256,7 +248,7 @@ tagboardController.controller('logout',['$scope',function($scope)
   {
     window.location="login.html";
   };
-}])
+ }])
 
 tagboardController.controller('logiCtrl',['$scope',function($scope){
 
