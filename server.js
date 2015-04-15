@@ -49,7 +49,8 @@ function c(s){
 
      store = '';
      sd = '';
-
+     unit_converted= '';
+    tag_id_converted = '';
     // res.writeHead(200, {"Content-Type": "text/json"});
 
     req.on('data', function(data) {
@@ -63,19 +64,21 @@ function c(s){
         // res.end(store);
         unit_converted = JSON.stringify(sd.Unit);
         tag_id_converted = JSON.stringify(sd.tag_id);
-        c(unit_converted);
-    });
 
-       MyTagBoard.create({
+      MyTagBoard.create({
 
-        Unit:   sd.unit_converted,
-        tag_id:  sd.tag_id_converted,
+        Unit: unit_converted,
+        tag_id: tag_id_converted,
         lowervalue: sd.lowervalue,
         tag_name: sd.tag_name,
         time:   sd.time,
         upper_value: sd.upper_value
 
      })
+
+    });
+
+
         MyTagBoard.create(function(err, todos)
 
         {
@@ -89,6 +92,6 @@ function c(s){
 
 });
 
-application.listen(8000);
+application.listen(8002);
 
 console.log("Application is listening to port number 8080");
