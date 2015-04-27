@@ -170,19 +170,9 @@ position: relative;
   color: red;
 }
 
-.b-color-blue {
-  color: #0ff;
-}
-.b-color-yellow {
-  color: #DFBA49;
-}
 .b-color-black
 {
  color: black;
-}
-
-.b-color-gray {
-  color: #8895A9;
 }
 
 .footer .page-wrapper:after {

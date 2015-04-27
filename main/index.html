@@ -8,6 +8,20 @@
   <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
   <script type="application/javascript" src="controller/Angular-controller.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="newrelic.js"></script>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- React link -->
+     <!-- <script src="http://fb.me/react-0.13.1.js"></script>
+    // <script src="http://fb.me/JSXTransformer-0.13.1.js"></script> -->
+     <!-- <script src="feed-socketio.js"></script>
+    // <script type="text/jsx" src="app.js"></script> -->
+
+  <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("472b0bae2be8a50d767e5eb73f7321c4 ");</script><!-- end Mixpanel -->
+
   <script type="text/javascript">
 
 
@@ -65,22 +79,42 @@ function timer(number) {
         </div>
       </div>
     </section>
-  </header>
 
+  </header>
   <section  id="main-change" class="main clearfix" >
     <div class="container" ng-controller="tagboardCtrl">
       <div id="tiles" ng-repeat="details in tag_list" class="tile" tag-update>
-        <h1 class="tile-header">{{details.tag_id}}</h1>
+        <h1 id = "tag_ids" class="tile-header">{{details.tag_id}}</h1>
         <div class="tile-details">
           <div class="tag-details">
-            <i class="asc-sort fa {{details.class_icon}} b-color-{{details.color}}"></i>
-            <a name ="tag_names"  class="detail_tag_name inline-block b-color-{{details.classed}}">{{details.tag_name}}
+            <i class="asc-sort fa "></i>
+            <a id ="reactReference" name ="tag_names"  class="detail_tag_name inline-block b-color-{{details.classed}}" >
+             {{details.tag_name}}
+
+            <script>
+
+            var socket = io.connect('http://localhost:8004');
+
+            socket.emit("Hey from client",{hello:"from client"});
+
+            socket.on('Hie',function(data)
+            {
+             console.log(data);
+            });
+
+           </script>
+
             </a>
           </div>
+          <script>
+           mixpanel.track(
+             ".tile" ,
+            { "background-color":"white"} );
+          </script>
           <span class="unit-value">{{details.Unit}}</span>
         </div>
         <div class="tile-footer" ng-controller="settingShow">
-          <a class=" time-detail time-line color-grey">{{details.time}}
+          <a class=" tag_names time-line color-grey">{{details.time}}
           </a>
           <span class=" color-grey image-setting" ng-Click="settings();">
             <i class="fa fa-cog" >
@@ -91,6 +125,13 @@ function timer(number) {
     </div>
   </section>
 <!-- -->
+
+
+<script type="text/javascript">
+mixpanel.track(
+"tile-footer");
+</script>
+
        <div id="modal_search_hidden" ng-controller="hideSection">
          <div class="search-header">
           <a class="button close color-blue" ng-Click="hide();"><i class="fa fa-times "></i></a>
@@ -102,9 +143,9 @@ function timer(number) {
           <p id="not-found" class="not-found-result result-color">Not Found</p>
 
         <div id="found"  ng-controller="displayList">
+
           <p id="unit-values" class="found-result result-color" ng-repeat="detailed in json_tags | filter:searchText:strict ">
-               Found values -
-              {{detailed.tag_id}}
+               Found values - {{detailed.tag_id}}
           </p>
         <table>
           <thead>
@@ -117,7 +158,7 @@ function timer(number) {
           <tr ng-repeat="detailed in json_tags | filter:searchText:strict">
             <td>{{detailed.tag_id}}</td>
             <td>{{detailed.Unit}}</td>
-            <td><a  class="button circular-model color-blue" ng-click="sendData(this.detailed);"><i id="one" class="fa fa-plus"></i></a>
+            <td><a id="testing" class="button circular-model color-blue" ng-click="sendData(this.detailed);"><i id="one" class="fa fa-plus"></i></a>
             </td>
           </tr>
         </table>
@@ -126,6 +167,17 @@ function timer(number) {
    </div>
 <!-- </div> -->
 <!-- -->
+<script type="text/javascript">
+
+var io = document.getElementById("one");
+console.log(io);
+
+io.click(function()
+{
+mixpanel.track("button circular-model color-blue");
+});
+
+</script>
 
   <div id="modal_settings_hidden" ng-controller="settingHide">
    <a class="button close" ng-click="settinghide()"><i class="fa fa-times "></i></a>
@@ -137,11 +189,11 @@ function timer(number) {
           <h1 class="header-title">Upper Range</h1><input id="up" type="number" name="Enter Upper Range" placeholder="Enter Upper Range" class="one range"/>
           <h1 class="header-title">Lower Range</h1><input id="lw" type="number" name="Enter LowerRange" placeholder="Enter LowerRange" class="one  range"/>
         </div>
-        <div class="settings_button-div_posititoning">
-          <a href="" id="setting_button" class="button submit-button" onSubmit="redirect(this)" >Ok</a>
-          <a href="" id="setting_button" class="button submit-button" ng-click="exit_settings();"onSubmit="redirect()">Cancel</a>
+        <div class="settings_button-div_posititoning" ng-controller="tagboardCtrl">
+          <a id="setting_button" class="button submit-button" ng-click="redirect(this.detailed)" >Ok</a>
+          <a id="setting_button" class="button submit-button" ng-click="exit_settings();">Cancel</a>
         </div>
-        </form>
+      </form>
     </div>
 
   <!-- -->
